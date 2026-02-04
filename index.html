@@ -3,270 +3,627 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rifdev — Jasa Bikin Web No 1 Murah se-Indramayu</title>
-  <meta name="description" content="Rifdev jasa bikin website cepat, rapi, dan terjangkau di Indramayu. Landing page, company profile, toko online, dan custom." />
-  <meta property="og:title" content="Rifdev — Jasa Bikin Web No 1 Murah se-Indramayu" />
-  <meta property="og:description" content="Bikin website cepat, rapi, dan terjangkau. Konsultasi gratis." />
-  <meta name="theme-color" content="#0b1220" />
-  <link rel="stylesheet" href="style.css" />
+  <title>Rifdev — Landing Page</title>
+  <meta name="description" content="Rifdev landing page UI kit style, modern, clean, mobile friendly." />
+  <style>
+    :root{
+      --bg1:#4f5ae8;
+      --bg2:#6b78f2;
+
+      --card:#f5f7ff;
+      --card2:#ffffff;
+
+      --text:#1d1f2a;
+      --muted:#7a7f98;
+
+      --accent1:#7c5cff;
+      --accent2:#ff4d7a;
+
+      --shadow: 0 30px 80px rgba(18, 22, 52, .25);
+      --shadow2: 0 18px 50px rgba(18, 22, 52, .18);
+
+      --radius: 26px;
+      --radius2: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(255,255,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 25%, rgba(0,0,0,.06), transparent 60%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      display:grid;
+      place-items:center;
+      padding:24px 14px;
+    }
+
+    a{color:inherit; text-decoration:none}
+    button{font-family:inherit}
+
+    /* Outer rounded white panel */
+    .shell{
+      width:min(1120px, 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(248,250,255,.92));
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 22px 26px 28px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* subtle inner glow */
+    .shell::before{
+      content:"";
+      position:absolute; inset:-60px -80px auto auto;
+      width:380px; height:380px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,77,122,.22), transparent 60%),
+                  radial-gradient(circle at 60% 60%, rgba(124,92,255,.18), transparent 58%);
+      filter: blur(2px);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+
+    /* Top nav */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      position:relative;
+      z-index:2;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800;
+    }
+    .brand .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow: 0 8px 22px rgba(255,77,122,.25);
+    }
+    .brand small{
+      display:block;
+      font-weight:700;
+      color:rgba(29,31,42,.7);
+      margin-top:2px;
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+
+    .nav{
+      display:flex; align-items:center; gap:28px;
+      color:rgba(29,31,42,.72);
+      font-weight:600;
+      font-size:14px;
+    }
+    .nav a:hover{color:rgba(29,31,42,.95)}
+
+    .actions{
+      display:flex; align-items:center; gap:10px;
+    }
+
+    .btn{
+      border:0;
+      padding:10px 16px;
+      border-radius: 999px;
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn-primary{
+      color:white;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      box-shadow: 0 16px 30px rgba(255,77,122,.22);
+    }
+    .btn-primary:hover{filter:brightness(1.03)}
+
+    .hamburger{
+      display:none;
+      width:42px; height:42px;
+      border-radius: 999px;
+      border: 1px solid rgba(40,45,72,.12);
+      background: rgba(255,255,255,.75);
+      cursor:pointer;
+    }
+
+    /* Hero layout */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 26px;
+      align-items:center;
+      margin-top: 18px;
+      position:relative;
+      z-index:2;
+      min-height: 420px;
+    }
+
+    .copy{
+      padding: 32px 8px 14px 12px;
+    }
+    .copy h1{
+      margin:0;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height:1.02;
+      letter-spacing:-.02em;
+      font-weight: 900;
+    }
+    .copy h1 .thin{font-weight:800; opacity:.95}
+    .copy .subhead{
+      margin: 10px 0 0;
+      color: rgba(29,31,42,.72);
+      font-weight:700;
+      max-width: 54ch;
+      font-size: 15px;
+      line-height:1.6;
+    }
+    .copy .tag{
+      margin-top: 16px;
+      font-weight:900;
+      color: var(--accent1);
+      letter-spacing:.2px;
+      font-size: 14px;
+    }
+    .copy .tag span{
+      color: rgba(29,31,42,.72);
+      font-weight:800;
+      margin-left:8px;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top: 22px;
+    }
+
+    .btn-ghost{
+      background: rgba(255,255,255,.8);
+      color: rgba(29,31,42,.9);
+      border: 1px solid rgba(40,45,72,.10);
+      box-shadow: 0 10px 24px rgba(18,22,52,.12);
+      font-weight:900;
+      padding: 12px 18px;
+    }
+
+    /* Right “UI cards” cluster */
+    .cluster{
+      position:relative;
+      height: 420px;
+    }
+
+    .tile{
+      position:absolute;
+      background: rgba(255,255,255,.92);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      border: 1px solid rgba(40,45,72,.08);
+      overflow:hidden;
+      transform: translateZ(0);
+    }
+    .tile.soft{
+      background: rgba(255,255,255,.86);
+    }
+
+    .tile .pad{padding:14px 14px 12px}
+
+    .mini-title{
+      font-size:12px;
+      font-weight:900;
+      color: rgba(29,31,42,.78);
+      margin:0 0 10px;
+    }
+
+    .pillbar{
+      height: 12px;
+      background: rgba(29,31,42,.08);
+      border-radius: 999px;
+      overflow:hidden;
+    }
+    .pillbar > span{
+      display:block;
+      height:100%;
+      width: 68%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 999px;
+    }
+
+    /* individual card positions (mirip gambar) */
+    .t1{
+      width: 230px; height: 130px;
+      right: 14px; top: 22px;
+      transform: rotate(-10deg);
+    }
+    .t1 .play{
+      width:74px; height:74px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 12px 30px rgba(18,22,52,.16);
+      display:grid;
+      place-items:center;
+      margin: 10px auto 10px;
+      border:1px solid rgba(40,45,72,.06);
+    }
+    .t1 .triangle{
+      width:0;height:0;
+      border-left: 18px solid var(--accent2);
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      transform: translateX(2px);
+      filter: drop-shadow(0 8px 10px rgba(255,77,122,.28));
+    }
+    .t1 .controls{
+      display:flex; justify-content:space-between; gap:8px;
+      padding: 0 16px 14px;
+      align-items:center;
+      color: rgba(29,31,42,.45);
+      font-weight:900;
+      font-size: 12px;
+    }
+    .t1 .controls .line{
+      height:6px; flex:1;
+      background: rgba(29,31,42,.08);
+      border-radius: 999px;
+      overflow:hidden;
+    }
+    .t1 .controls .line span{
+      display:block; height:100%; width:62%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 999px;
+    }
+
+    .t2{
+      width: 270px; height: 150px;
+      right: 140px; top: 88px;
+      transform: rotate(-16deg);
+    }
+    .t2 .list{
+      display:grid; gap:8px;
+    }
+    .row{
+      display:flex; gap:10px; align-items:center;
+      font-size:12px; font-weight:800;
+      color: rgba(29,31,42,.70);
+    }
+    .chip{
+      width: 52px; height: 10px;
+      border-radius: 999px;
+      background: rgba(29,31,42,.08);
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .chip span{
+      display:block; height:100%; width: 80%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 999px;
+    }
+    .row small{color: rgba(29,31,42,.42); font-weight:900; margin-left:auto}
+
+    .t3{
+      width: 210px; height: 110px;
+      right: 280px; top: 180px;
+      transform: rotate(-10deg);
+    }
+    .t3 .plus{
+      width:26px; height:26px; border-radius: 10px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.85);
+      border:1px solid rgba(40,45,72,.08);
+      box-shadow: 0 10px 22px rgba(18,22,52,.12);
+      font-weight: 900;
+      color: rgba(29,31,42,.55);
+    }
+    .t3 .task{
+      display:flex; justify-content:space-between; gap:10px;
+      align-items:center;
+      margin-top: 10px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(40,45,72,.07);
+      background: rgba(245,247,255,.7);
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(29,31,42,.72);
+    }
+
+    .t4{
+      width: 270px; height: 130px;
+      right: 160px; top: 250px;
+      transform: rotate(-12deg);
+    }
+    .t4 .quote{
+      font-size:12px;
+      line-height:1.55;
+      color: rgba(29,31,42,.62);
+      font-weight: 800;
+    }
+    .t4 .quote b{color: rgba(29,31,42,.88)}
+    .t4 .avatar{
+      margin-top: 10px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .t4 .pic{
+      width:34px; height:34px; border-radius: 999px;
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(255,77,122,.35));
+      border:1px solid rgba(40,45,72,.08);
+    }
+    .t4 .name{
+      font-size:12px; font-weight: 900;
+      color: rgba(29,31,42,.78);
+    }
+    .t4 .name small{
+      display:block;
+      font-weight:900;
+      color: rgba(29,31,42,.40);
+      margin-top: 2px;
+      font-size: 11px;
+    }
+
+    .t5{
+      width: 260px; height: 160px;
+      right: 12px; top: 290px;
+      transform: rotate(-6deg);
+    }
+    .t5 .bars{
+      display:grid; gap:10px;
+      margin-top: 10px;
+    }
+    .bar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight: 900;
+      color: rgba(29,31,42,.62);
+      font-size:12px;
+    }
+    .bar .n{
+      width:20px;
+      text-align:right;
+      color: rgba(29,31,42,.55);
+    }
+    .bar .track{
+      flex:1;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(29,31,42,.08);
+      overflow:hidden;
+    }
+    .bar .track span{
+      display:block;
+      height:100%;
+      width: 70%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 999px;
+    }
+    .bar:nth-child(2) .track span{width: 52%}
+    .bar:nth-child(3) .track span{width: 82%}
+
+    /* Footer social (left bottom in image) */
+    .social{
+      position:absolute;
+      left: 26px;
+      bottom: 18px;
+      display:flex;
+      gap:12px;
+      color: rgba(29,31,42,.45);
+      z-index:2;
+    }
+    .icon{
+      width: 28px; height: 28px;
+      border-radius: 999px;
+      display:grid; place-items:center;
+      border: 1px solid rgba(40,45,72,.10);
+      background: rgba(255,255,255,.7);
+      box-shadow: 0 10px 18px rgba(18,22,52,.10);
+      font-weight:900;
+      font-size: 12px;
+    }
+
+    /* Mobile nav panel */
+    .mnav{
+      display:none;
+      position:absolute;
+      right: 18px;
+      top: 68px;
+      padding: 12px;
+      width: 220px;
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(40,45,72,.10);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      z-index: 99;
+    }
+    .mnav a{
+      display:block;
+      padding: 10px 10px;
+      border-radius: 12px;
+      color: rgba(29,31,42,.70);
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .mnav a:hover{background: rgba(124,92,255,.08); color: rgba(29,31,42,.92)}
+    .mnav .btn-primary{
+      width:100%;
+      margin-top:10px;
+      text-align:center;
+      display:inline-flex;
+      justify-content:center;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{grid-template-columns: 1fr; min-height: unset}
+      .cluster{height: 420px; margin-top: 6px}
+      .social{position:static; margin-top: 20px}
+    }
+
+    @media (max-width: 760px){
+      .shell{padding: 18px 16px 20px}
+      .nav{display:none}
+      .hamburger{display:grid; place-items:center}
+      .copy{padding: 22px 6px 6px}
+      .cta-row{flex-wrap:wrap}
+      .cluster{height: 430px}
+
+      /* tighten & center cards a bit */
+      .t1{right: 0px}
+      .t2{right: 84px}
+      .t3{right: 190px}
+      .t4{right: 88px}
+      .t5{right: 0px}
+    }
+
+    @media (max-width: 420px){
+      .cluster{height: 470px}
+      .t2{right: 40px}
+      .t3{right: 140px}
+      .t4{right: 40px}
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <a class="brand" href="#top" aria-label="Rifdev home">
-      <span class="logo">R</span>
-      <span class="brand-text">
-        <strong>Rifdev</strong>
-        <small>Web Dev Indramayu</small>
-      </span>
-    </a>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="dot"></span>
+        <div>
+          <div>YourCompany.</div>
+          <small>Rifdev UI Kit</small>
+        </div>
+      </a>
 
-    <nav class="nav">
-      <a href="#layanan">Layanan</a>
-      <a href="#harga">Paket</a>
-      <a href="#portofolio">Portofolio</a>
-      <a href="#faq">FAQ</a>
-      <a href="#kontak" class="btn btn-sm">Kontak</a>
-    </nav>
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#profile">Profile</a>
+        <a href="#about">About</a>
+        <a href="#help">Help</a>
+      </nav>
 
-    <button class="menu" id="menuBtn" aria-label="Buka menu">☰</button>
-  </header>
+      <div class="actions">
+        <button class="btn btn-primary" type="button">Sign Up</button>
+        <button class="hamburger" id="menuBtn" aria-label="Menu">☰</button>
+      </div>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-content">
-        <p class="badge">🚀 Jasa Bikin Web No 1 Murah se-Indramayu</p>
-        <h1>Website cepat, rapi, dan siap jualan — bareng <span class="grad">Rifdev</span>.</h1>
-        <p class="sub">
-          Cocok untuk UMKM, toko online, company profile, portofolio, hingga landing page iklan.
-          Konsultasi gratis & proses transparan.
+      <div class="mnav" id="mnav" aria-hidden="true">
+        <a href="#home">Home</a>
+        <a href="#profile">Profile</a>
+        <a href="#about">About</a>
+        <a href="#help">Help</a>
+        <a class="btn btn-primary" href="#signup">Sign Up</a>
+      </div>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="copy">
+        <h1><span class="thin">UI Kit</span><br/>Landing Page</h1>
+        <div class="tag">Free Landing UI Kit</div>
+        <p class="subhead">
+          Our services will make your website unique, modern and stylish.
         </p>
 
-        <div class="cta">
-          <a class="btn" href="#kontak">Minta Penawaran</a>
-          <a class="btn btn-ghost" href="#harga">Lihat Paket</a>
+        <div class="cta-row">
+          <a class="btn btn-ghost" href="#join">Join Us Now</a>
         </div>
 
-        <div class="trust">
-          <div class="trust-item">
-            <strong>1–3 hari</strong>
-            <span>estimasi landing page</span>
-          </div>
-          <div class="trust-item">
-            <strong>Mobile-first</strong>
-            <span>tampil bagus di HP</span>
-          </div>
-          <div class="trust-item">
-            <strong>SEO basic</strong>
-            <span>siap ditemukan</span>
-          </div>
+        <div class="social" aria-label="social links">
+          <div class="icon">t</div>
+          <div class="icon">in</div>
+          <div class="icon">f</div>
+          <div class="icon">ig</div>
         </div>
       </div>
 
-      <div class="hero-card">
-        <div class="card">
-          <div class="card-top">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-          <div class="card-body">
-            <h3>Gratis</h3>
-            <ul>
-              <li>✅ Konsultasi kebutuhan</li>
-              <li>✅ Rekomendasi paket</li>
-              <li>✅ Draft struktur halaman</li>
-            </ul>
-            <p class="note">Klik “Kontak” untuk mulai.</p>
+      <div class="cluster" aria-hidden="true">
+        <!-- Video tile -->
+        <div class="tile t1">
+          <div class="play"><div class="triangle"></div></div>
+          <div class="controls">
+            <span>◀</span>
+            <div class="line"><span></span></div>
+            <span>▶</span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="layanan" class="section">
-      <h2>Layanan Rifdev</h2>
-      <p class="muted">Pilih yang kamu butuhkan, bisa custom juga.</p>
-
-      <div class="grid3">
-        <article class="tile">
-          <h3>Landing Page</h3>
-          <p>Untuk promosi produk/jasa, iklan, dan campaign. Fokus konversi.</p>
-          <ul>
-            <li>Section rapi + CTA</li>
-            <li>Form/WhatsApp</li>
-            <li>Tracking basic</li>
-          </ul>
-        </article>
-
-        <article class="tile">
-          <h3>Company Profile</h3>
-          <p>Profil bisnis profesional: layanan, tim, galeri, lokasi, kontak.</p>
-          <ul>
-            <li>Multi halaman</li>
-            <li>SEO basic</li>
-            <li>Optimasi speed</li>
-          </ul>
-        </article>
-
-        <article class="tile">
-          <h3>Custom Web</h3>
-          <p>Butuh fitur khusus? katalog, booking, dashboard, dsb.</p>
-          <ul>
-            <li>Diskusi kebutuhan</li>
-            <li>Estimasi jelas</li>
-            <li>Maintenance opsional</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="harga" class="section">
-      <h2>Paket & Harga</h2>
-      <p class="muted">Harga bisa menyesuaikan fitur. Ini patokan awal.</p>
-
-      <div class="pricing">
-        <div class="price-card">
-          <h3>Starter</h3>
-          <p class="price">Rp 299k<span>/sekali</span></p>
-          <ul>
-            <li>1 halaman (landing)</li>
-            <li>Desain simple & cepat</li>
-            <li>Form/WA button</li>
-            <li>Revisi 1x</li>
-          </ul>
-          <a class="btn btn-ghost" href="#kontak">Ambil Starter</a>
+        <!-- Region picker -->
+        <div class="tile t2 soft">
+          <div class="pad">
+            <p class="mini-title">Choose Your Region</p>
+            <div class="list">
+              <div class="row"><div class="chip"><span></span></div>Europe <small>✓</small></div>
+              <div class="row"><div class="chip" style="opacity:.5"><span style="width:45%"></span></div>America <small>&nbsp;</small></div>
+              <div class="row"><div class="chip" style="opacity:.35"><span style="width:35%"></span></div>Asia <small>&nbsp;</small></div>
+              <div class="row"><div class="chip" style="opacity:.25"><span style="width:25%"></span></div>Africa <small>&nbsp;</small></div>
+            </div>
+          </div>
         </div>
 
-        <div class="price-card featured">
-          <div class="tag">Paling Laris</div>
-          <h3>Business</h3>
-          <p class="price">Rp 799k<span>/sekali</span></p>
-          <ul>
-            <li>3–5 halaman</li>
-            <li>Company profile</li>
-            <li>SEO basic + speed</li>
-            <li>Revisi 3x</li>
-          </ul>
-          <a class="btn" href="#kontak">Ambil Business</a>
+        <!-- Assign task -->
+        <div class="tile t3">
+          <div class="pad">
+            <p class="mini-title">Assign New Task</p>
+            <div class="task">
+              <span>Assign New Task</span>
+              <span class="plus">+</span>
+            </div>
+          </div>
         </div>
 
-        <div class="price-card">
-          <h3>Pro</h3>
-          <p class="price">Mulai Rp 1.5jt</p>
-          <ul>
-            <li>Custom fitur</li>
-            <li>Integrasi API</li>
-            <li>Dashboard/booking</li>
-            <li>Maintenance opsional</li>
-          </ul>
-          <a class="btn btn-ghost" href="#kontak">Konsultasi Pro</a>
+        <!-- Quote -->
+        <div class="tile t4 soft">
+          <div class="pad">
+            <p class="quote">Hey! <b>Rifdev</b> follow us on social media so you don’t miss any offer!</p>
+            <div class="avatar">
+              <div class="pic"></div>
+              <div class="name">
+                Rose Steven
+                <small>Marketing</small>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <p class="mini muted">Catatan: domain/hosting bisa kamu sediakan sendiri atau dibantu (biaya terpisah).</p>
-    </section>
+        <!-- Today's task bars -->
+        <div class="tile t5">
+          <div class="pad">
+            <p class="mini-title">Today's Task</p>
+            <div class="bars">
+              <div class="bar"><span class="n">20</span><div class="track"><span></span></div></div>
+              <div class="bar"><span class="n">25</span><div class="track"><span></span></div></div>
+              <div class="bar"><span class="n">30</span><div class="track"><span></span></div></div>
+            </div>
+          </div>
+        </div>
 
-    <section id="portofolio" class="section">
-      <h2>Portofolio</h2>
-      <p class="muted">Isi nanti dengan project kamu. Untuk sekarang pakai placeholder.</p>
-
-      <div class="grid3">
-        <a class="work" href="#" aria-label="Project 1">
-          <div class="work-thumb">Project 1</div>
-          <div class="work-meta">
-            <strong>Landing UMKM</strong>
-            <span>Konversi + WhatsApp</span>
-          </div>
-        </a>
-        <a class="work" href="#" aria-label="Project 2">
-          <div class="work-thumb">Project 2</div>
-          <div class="work-meta">
-            <strong>Company Profile</strong>
-            <span>SEO basic + galeri</span>
-          </div>
-        </a>
-        <a class="work" href="#" aria-label="Project 3">
-          <div class="work-thumb">Project 3</div>
-          <div class="work-meta">
-            <strong>Katalog Produk</strong>
-            <span>Filter + kontak</span>
-          </div>
-        </a>
       </div>
     </section>
-
-    <section id="faq" class="section">
-      <h2>FAQ</h2>
-      <div class="faq">
-        <details>
-          <summary>Berapa lama pengerjaannya?</summary>
-          <p>Landing page biasanya 1–3 hari. Company profile 3–7 hari (tergantung materi & revisi).</p>
-        </details>
-        <details>
-          <summary>Apa saja yang perlu saya siapkan?</summary>
-          <p>Nama bisnis, logo (kalau ada), teks layanan, foto produk, dan contoh referensi website yang kamu suka.</p>
-        </details>
-        <details>
-          <summary>Bisa bantu domain & hosting?</summary>
-          <p>Bisa. Kamu juga boleh pakai domain/hosting sendiri. Aku bantu setup-nya.</p>
-        </details>
-        <details>
-          <summary>Revisi bagaimana?</summary>
-          <p>Jumlah revisi sesuai paket. Revisi minor (teks/layout ringan) termasuk.</p>
-        </details>
-      </div>
-    </section>
-
-    <section id="kontak" class="section contact">
-      <h2>Kontak Rifdev</h2>
-      <p class="muted">Isi kontak kamu di bawah (WA/IG/email). Tombolnya otomatis ikut.</p>
-
-      <div class="contact-card">
-        <div class="contact-left">
-          <h3>Mulai sekarang</h3>
-          <p>Chat kebutuhanmu: jenis web, target, fitur, dan contoh referensi.</p>
-
-          <div class="contact-actions">
-            <!-- Ganti nomor WA di script.js -->
-            <a class="btn" id="waBtn" href="#">WhatsApp</a>
-            <a class="btn btn-ghost" id="emailBtn" href="#">Email</a>
-          </div>
-
-          <p class="mini muted">
-            Jam kerja fleksibel • Indramayu & online
-          </p>
-        </div>
-
-        <form class="contact-form" id="form">
-          <label>
-            Nama
-            <input name="name" placeholder="Nama kamu" required />
-          </label>
-          <label>
-            Kebutuhan
-            <input name="need" placeholder="Landing page / company profile / custom" required />
-          </label>
-          <label>
-            Pesan
-            <textarea name="msg" rows="4" placeholder="Ceritain singkat kebutuhannya..." required></textarea>
-          </label>
-          <button class="btn" type="submit">Buat Pesan WhatsApp</button>
-          <p class="mini muted">Form ini tidak mengirim data ke server. Hanya bikin template pesan WA.</p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> Rifdev • Jasa Bikin Web Indramayu</p>
-    <p class="mini muted">Dibuat dengan HTML + CSS (cocok untuk GitHub Pages).</p>
-  </footer>
-
-  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
-    <a href="#layanan">Layanan</a>
-    <a href="#harga">Paket</a>
-    <a href="#portofolio">Portofolio</a>
-    <a href="#faq">FAQ</a>
-    <a href="#kontak" class="btn btn-sm">Kontak</a>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('mnav');
+    let open = false;
+
+    btn?.addEventListener('click', () => {
+      open = !open;
+      nav.style.display = open ? 'block' : 'none';
+      nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    });
+
+    // close on link click
+    nav?.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        open = false;
+        nav.style.display = 'none';
+        nav.setAttribute('aria-hidden', 'true');
+      }
+    });
+  </script>
 </body>
 </html>
