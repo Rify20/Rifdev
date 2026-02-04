@@ -41,17 +41,17 @@
 
     <!-- Navigation -->
     <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7ebf4] bg-white px-4 md:px-10 py-4 sticky top-0 z-50 shadow-sm">
-      <div class="flex items-center gap-4 text-[#0d121c]">
-        <div class="size-8 text-primary">
-          <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill-rule="evenodd"></path>
-          </svg>
+      <!-- Brand -->
+      <a href="#home" class="flex items-center gap-4 text-[#0d121c]">
+        <div class="size-8 shrink-0 rounded-lg overflow-hidden bg-white border border-[#e7ebf4]">
+          <!-- LOGO PNG: tinggal ubah src-nya -->
+          <img id="logoImg" src="logo.jpeg" alt="Logo Rifdev" class="w-8 h-8 object-contain" />
         </div>
         <div class="leading-tight">
           <h2 class="text-[#0d121c] text-xl font-black tracking-[-0.015em]">Rifdev</h2>
           <p class="text-[#49659c] text-xs font-semibold -mt-0.5">Web Dev Indramayu</p>
         </div>
-      </div>
+      </a>
 
       <!-- Desktop Nav -->
       <div class="flex flex-1 justify-end gap-8 hidden md:flex">
@@ -376,10 +376,19 @@
 
   <script>
     // =============================
-    // UBAH KONTAK DI SINI
+    // TINGGAL UBAH NAMA FILE LOGO DI SINI
+    // =============================
+    const LOGO_PATH = "assets/logo.png"; // contoh: "assets/rifdev-logo.png"
+
+    // =============================
+    // KONTAK
     // =============================
     const WA_NUMBER = "6289507083879"; // 089507083879 -> format internasional tanpa "+"
     const IG_URL = "https://www.instagram.com/rifdev_?igsh=MTRvM2F5dnk5NzNydg==";
+
+    // set logo path
+    const logo = document.getElementById("logoImg");
+    if (logo) logo.src = LOGO_PATH;
 
     function waLink(text) {
       return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
