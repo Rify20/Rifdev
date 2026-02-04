@@ -1,687 +1,447 @@
-<!doctype html>
-<html lang="id">
+<!DOCTYPE html>
+<html class="light" lang="id">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rifdev — Jasa Pembuatan Web Paling Murah se-Indramayu</title>
-  <meta name="description" content="Rifdev jasa pembuatan website paling murah se-Indramayu. Landing page, company profile, toko online, custom. Konsultasi gratis." />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Rifdev Indramayu - Jasa Buat Web Paling Murah se-Indramayu</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0d59f2",
+            "primary-hover": "#0b4ecf",
+            "background-light": "#f5f6f8",
+            "background-dark": "#101622",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"],
+            "body": ["Inter", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+
   <style>
-    :root{
-      --bg1:#4f5ae8;
-      --bg2:#6b78f2;
-
-      --panel: linear-gradient(180deg, rgba(255,255,255,.96), rgba(248,250,255,.92));
-      --text:#1d1f2a;
-      --muted:#7a7f98;
-
-      --accent1:#7c5cff;
-      --accent2:#ff4d7a;
-      --accent3:#22c55e;
-
-      --shadow: 0 30px 80px rgba(18, 22, 52, .25);
-      --shadow2: 0 18px 50px rgba(18, 22, 52, .18);
-
-      --line: rgba(40,45,72,.10);
-      --radius: 22px;
-      --radius2: 18px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--text);
-      background:
-        radial-gradient(900px 500px at 15% 10%, rgba(255,255,255,.18), transparent 60%),
-        radial-gradient(900px 500px at 85% 25%, rgba(0,0,0,.06), transparent 60%),
-        linear-gradient(135deg, var(--bg1), var(--bg2));
-      display:grid;
-      place-items:center;
-      padding:24px 14px;
-    }
-
-    a{color:inherit; text-decoration:none}
-    button{font-family:inherit}
-
-    .shell{
-      width:min(1120px, 100%);
-      background: var(--panel);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px 26px 26px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .shell::before{
-      content:"";
-      position:absolute; inset:-70px -90px auto auto;
-      width:420px; height:420px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,77,122,.22), transparent 60%),
-        radial-gradient(circle at 60% 60%, rgba(124,92,255,.18), transparent 58%),
-        radial-gradient(circle at 20% 70%, rgba(34,197,94,.14), transparent 55%);
-      transform: rotate(12deg);
-      pointer-events:none;
-    }
-
-    /* Topbar */
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      position:relative;
-      z-index:2;
-    }
-
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900;
-      letter-spacing:.2px;
-    }
-    .brand .mark{
-      width:36px; height:36px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      box-shadow: 0 16px 28px rgba(255,77,122,.22);
-      display:grid; place-items:center;
-      color:white;
-      font-size: 16px;
-    }
-    .brand small{
-      display:block;
-      font-weight:800;
-      color:rgba(29,31,42,.62);
-      margin-top:2px;
-      font-size:12px;
-    }
-
-    .nav{
-      display:flex; align-items:center; gap:26px;
-      color:rgba(29,31,42,.72);
-      font-weight:700;
-      font-size:14px;
-    }
-    .nav a:hover{color:rgba(29,31,42,.95)}
-
-    .actions{display:flex; align-items:center; gap:10px}
-    .btn{
-      border:0;
-      padding:10px 16px;
-      border-radius: 999px;
-      font-weight:900;
-      cursor:pointer;
-      transition: transform .12s ease, filter .12s ease;
-      white-space:nowrap;
-    }
-    .btn:active{transform: translateY(1px)}
-    .btn-primary{
-      color:white;
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow: 0 16px 30px rgba(255,77,122,.22);
-    }
-    .btn-primary:hover{filter:brightness(1.03)}
-    .btn-ghost{
-      background: rgba(255,255,255,.82);
-      color: rgba(29,31,42,.9);
-      border: 1px solid var(--line);
-      box-shadow: 0 10px 24px rgba(18,22,52,.12);
-      padding: 12px 18px;
-    }
-
-    .hamburger{
-      display:none;
-      width:42px; height:42px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.75);
-      cursor:pointer;
-    }
-
-    .mnav{
-      display:none;
-      position:absolute;
-      right: 18px;
-      top: 68px;
-      padding: 12px;
-      width: 230px;
-      background: rgba(255,255,255,.92);
-      border:1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      z-index: 99;
-    }
-    .mnav a{
-      display:block;
-      padding: 10px 10px;
-      border-radius: 12px;
-      color: rgba(29,31,42,.70);
-      font-weight: 900;
-      font-size: 14px;
-    }
-    .mnav a:hover{background: rgba(124,92,255,.08); color: rgba(29,31,42,.92)}
-    .mnav .btn-primary{
-      width:100%;
-      margin-top:10px;
-      text-align:center;
-      display:inline-flex;
-      justify-content:center;
-    }
-
-    /* Hero */
-    .hero{
-      display:grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 26px;
-      align-items:center;
-      margin-top: 18px;
-      position:relative;
-      z-index:2;
-      min-height: 440px;
-    }
-
-    .copy{padding: 30px 8px 14px 10px}
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.75);
-      color: rgba(29,31,42,.72);
-      font-weight: 900;
-      font-size: 12px;
-    }
-    .badge .spark{
-      width:10px;height:10px;border-radius:999px;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      box-shadow: 0 10px 18px rgba(255,77,122,.2);
-    }
-
-    h1{
-      margin: 14px 0 8px;
-      font-size: clamp(32px, 4.2vw, 52px);
-      line-height:1.03;
-      letter-spacing:-.02em;
-      font-weight: 950;
-    }
-    .grad{
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .sub{
-      margin: 10px 0 0;
-      color: rgba(29,31,42,.70);
-      font-weight:800;
-      max-width: 58ch;
-      font-size: 15px;
-      line-height:1.7;
-    }
-
-    .bullets{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .bullet{
-      border:1px solid var(--line);
-      border-radius: 16px;
-      padding: 10px 10px;
-      background: rgba(255,255,255,.70);
-      box-shadow: 0 10px 22px rgba(18,22,52,.10);
-    }
-    .bullet strong{display:block; font-weight:950}
-    .bullet span{display:block; color: rgba(29,31,42,.62); font-weight:900; font-size: 12px; margin-top: 2px}
-
-    .cta{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      margin-top: 18px;
-      flex-wrap:wrap;
-    }
-
-    /* Right floating cards cluster (still “UI kit vibe”) */
-    .cluster{position:relative; height: 440px}
-    .tile{
-      position:absolute;
-      background: rgba(255,255,255,.92);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      border: 1px solid rgba(40,45,72,.08);
-      overflow:hidden;
-      transform: translateZ(0);
-    }
-    .tile.soft{background: rgba(255,255,255,.86)}
-    .pad{padding:14px 14px 12px}
-    .mini-title{
-      font-size:12px;
-      font-weight:950;
-      color: rgba(29,31,42,.78);
-      margin:0 0 10px;
-    }
-
-    /* Card 1: “Harga mulai” */
-    .t1{
-      width: 250px; height: 140px;
-      right: 12px; top: 20px;
-      transform: rotate(-10deg);
-    }
-    .price{
-      font-size: 28px;
-      font-weight: 950;
-      letter-spacing:-.02em;
-      margin: 0;
-    }
-    .price small{
-      font-size: 12px;
-      color: rgba(29,31,42,.55);
-      font-weight: 900;
-      margin-left: 6px;
-    }
-    .pill{
-      margin-top: 10px;
-      display:flex; gap:8px; align-items:center;
-      font-weight: 950; font-size: 12px;
-      color: rgba(29,31,42,.62);
-    }
-    .pill .dot{
-      width:10px;height:10px;border-radius:999px;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-    }
-
-    /* Card 2: Paket */
-    .t2{
-      width: 290px; height: 160px;
-      right: 140px; top: 90px;
-      transform: rotate(-16deg);
-    }
-    .rows{display:grid; gap:10px}
-    .row{
-      display:flex; align-items:center; gap:10px;
-      font-size:12px; font-weight:950;
-      color: rgba(29,31,42,.72);
-    }
-    .chip{
-      width: 64px; height: 12px;
-      border-radius: 999px;
-      background: rgba(29,31,42,.08);
-      overflow:hidden;
-      flex:0 0 auto;
-    }
-    .chip span{
-      display:block; height:100%;
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      border-radius: 999px;
-      width: 70%;
-    }
-    .row small{margin-left:auto; color: rgba(29,31,42,.48); font-weight: 950}
-
-    /* Card 3: CTA task */
-    .t3{
-      width: 220px; height: 120px;
-      right: 290px; top: 190px;
-      transform: rotate(-10deg);
-    }
-    .task{
-      display:flex; justify-content:space-between; gap:10px;
-      align-items:center;
-      margin-top: 10px;
-      padding: 10px 10px;
-      border-radius: 14px;
-      border: 1px solid rgba(40,45,72,.07);
-      background: rgba(245,247,255,.7);
-      font-size: 12px;
-      font-weight: 950;
-      color: rgba(29,31,42,.72);
-    }
-    .plus{
-      width:28px; height:28px; border-radius: 12px;
-      display:grid; place-items:center;
-      background: rgba(255,255,255,.9);
-      border:1px solid rgba(40,45,72,.08);
-      box-shadow: 0 10px 22px rgba(18,22,52,.12);
-      font-weight: 950;
-      color: rgba(29,31,42,.55);
-    }
-
-    /* Card 4: Testimoni */
-    .t4{
-      width: 290px; height: 135px;
-      right: 160px; top: 260px;
-      transform: rotate(-12deg);
-    }
-    .quote{
-      font-size:12px;
-      line-height:1.55;
-      color: rgba(29,31,42,.62);
-      font-weight: 900;
-      margin:0;
-    }
-    .quote b{color: rgba(29,31,42,.88)}
-    .avatar{
-      margin-top: 10px;
-      display:flex; align-items:center; gap:10px;
-    }
-    .pic{
-      width:34px; height:34px; border-radius: 999px;
-      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(255,77,122,.35));
-      border:1px solid rgba(40,45,72,.08);
-    }
-    .name{
-      font-size:12px; font-weight: 950;
-      color: rgba(29,31,42,.78);
-    }
-    .name small{
-      display:block;
-      font-weight:950;
-      color: rgba(29,31,42,.40);
-      margin-top: 2px;
-      font-size: 11px;
-    }
-
-    /* Card 5: “Benefit” bars */
-    .t5{
-      width: 270px; height: 165px;
-      right: 12px; top: 285px;
-      transform: rotate(-6deg);
-    }
-    .bars{display:grid; gap:10px; margin-top: 10px}
-    .bar{
-      display:flex; align-items:center; gap:10px;
-      font-weight: 950;
-      color: rgba(29,31,42,.62);
-      font-size:12px;
-    }
-    .bar .n{width:26px; text-align:right; color: rgba(29,31,42,.55)}
-    .track{
-      flex:1; height: 14px; border-radius: 999px;
-      background: rgba(29,31,42,.08);
-      overflow:hidden;
-    }
-    .track span{
-      display:block; height:100%;
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      border-radius: 999px;
-      width: 78%;
-    }
-    .bar:nth-child(2) .track span{width: 60%}
-    .bar:nth-child(3) .track span{width: 86%}
-
-    /* Social bottom-left */
-    .social{
-      position:absolute;
-      left: 26px;
-      bottom: 18px;
-      display:flex;
-      gap:12px;
-      color: rgba(29,31,42,.45);
-      z-index:2;
-    }
-    .icon{
-      width: 28px; height: 28px;
-      border-radius: 999px;
-      display:grid; place-items:center;
-      border: 1px solid rgba(40,45,72,.10);
-      background: rgba(255,255,255,.7);
-      box-shadow: 0 10px 18px rgba(18,22,52,.10);
-      font-weight:950;
-      font-size: 12px;
-    }
-
-    /* Sections */
-    .sections{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      position:relative;
-      z-index:2;
-    }
-    .sec{
-      border:1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 12px 24px rgba(18,22,52,.10);
-      padding: 14px;
-    }
-    .sec h3{margin:0 0 8px; font-size: 14px; font-weight: 950}
-    .sec p{margin:0; font-size: 13px; line-height:1.55; color: rgba(29,31,42,.68); font-weight: 800}
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero{grid-template-columns: 1fr; min-height: unset}
-      .cluster{height: 440px}
-      .social{position:static; margin-top: 18px}
-      .sections{grid-template-columns: 1fr}
-    }
-
-    @media (max-width: 760px){
-      .shell{padding: 18px 16px 20px}
-      .nav{display:none}
-      .hamburger{display:grid; place-items:center}
-      .copy{padding: 22px 6px 6px}
-      .bullets{grid-template-columns: 1fr; }
-      .cluster{height: 460px}
-
-      .t1{right: 0px}
-      .t2{right: 84px}
-      .t3{right: 190px}
-      .t4{right: 88px}
-      .t5{right: 0px}
-    }
-
-    @media (max-width: 420px){
-      .cluster{height: 505px}
-      .t2{right: 40px}
-      .t3{right: 140px}
-      .t4{right: 40px}
-    }
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24; }
   </style>
 </head>
-<body>
-  <div class="shell">
-    <header class="topbar">
-      <a class="brand" href="#home" aria-label="Rifdev home">
-        <span class="mark">R</span>
-        <div>
-          <div>Rifdev</div>
-          <small>Jasa Pembuatan Website</small>
+
+<body class="bg-background-light dark:bg-background-dark text-[#111418] overflow-x-hidden">
+  <div class="relative flex flex-col min-h-screen w-full">
+
+    <!-- Navigation -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7ebf4] bg-white px-4 md:px-10 py-4 sticky top-0 z-50 shadow-sm">
+      <div class="flex items-center gap-4 text-[#0d121c]">
+        <div class="size-8 text-primary">
+          <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill-rule="evenodd"></path>
+          </svg>
         </div>
-      </a>
-
-      <nav class="nav">
-        <a href="#layanan">Layanan</a>
-        <a href="#paket">Paket</a>
-        <a href="#testi">Testimoni</a>
-        <a href="#kontak">Kontak</a>
-      </nav>
-
-      <div class="actions">
-        <a class="btn btn-primary" id="waTop" href="#">Chat WhatsApp</a>
-        <button class="hamburger" id="menuBtn" aria-label="Menu">☰</button>
+        <div class="leading-tight">
+          <h2 class="text-[#0d121c] text-xl font-black tracking-[-0.015em]">Rifdev</h2>
+          <p class="text-[#49659c] text-xs font-semibold -mt-0.5">Web Dev Indramayu</p>
+        </div>
       </div>
 
-      <div class="mnav" id="mnav" aria-hidden="true">
-        <a href="#layanan">Layanan</a>
-        <a href="#paket">Paket</a>
-        <a href="#testi">Testimoni</a>
-        <a href="#kontak">Kontak</a>
-        <a class="btn btn-primary" id="waTop2" href="#kontak">Chat WhatsApp</a>
+      <!-- Desktop Nav -->
+      <div class="flex flex-1 justify-end gap-8 hidden md:flex">
+        <nav class="flex items-center gap-9">
+          <a class="text-[#0d121c] text-sm font-medium hover:text-primary transition-colors" href="#home">Home</a>
+          <a class="text-[#0d121c] text-sm font-medium hover:text-primary transition-colors" href="#services">Services</a>
+          <a class="text-[#0d121c] text-sm font-medium hover:text-primary transition-colors" href="#pricing">Pricing</a>
+          <a class="text-[#0d121c] text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
+        </nav>
+
+        <a id="btnHeaderWA"
+           class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary-hover text-white text-sm font-bold tracking-[0.015em] transition-colors shadow-md"
+           href="#">
+          <span class="truncate">Hubungi Kami</span>
+        </a>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-[#0d121c] p-2 rounded-lg hover:bg-[#f2f5fb] transition" aria-label="menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
     </header>
 
-    <section class="hero" id="home">
-      <div class="copy">
-        <div class="badge"><span class="spark"></span> Paling murah se-Indramayu • Cepat & rapi</div>
+    <!-- Mobile Menu Panel -->
+    <div id="mobileMenu"
+         class="md:hidden hidden border-b border-[#e7ebf4] bg-white px-4 py-3 shadow-sm">
+      <nav class="flex flex-col gap-2">
+        <a class="px-3 py-2 rounded-lg text-[#0d121c] font-semibold hover:bg-[#f2f5fb]" href="#home">Home</a>
+        <a class="px-3 py-2 rounded-lg text-[#0d121c] font-semibold hover:bg-[#f2f5fb]" href="#services">Services</a>
+        <a class="px-3 py-2 rounded-lg text-[#0d121c] font-semibold hover:bg-[#f2f5fb]" href="#pricing">Pricing</a>
+        <a class="px-3 py-2 rounded-lg text-[#0d121c] font-semibold hover:bg-[#f2f5fb]" href="#contact">Contact</a>
 
-        <h1>Jasa bikin website <span class="grad">Rifdev</span><br/>biar bisnismu makin laris.</h1>
+        <a id="btnMobileWA"
+           class="mt-2 flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-primary hover:bg-primary-hover text-white text-sm font-bold tracking-[0.015em] transition-colors shadow-md"
+           href="#">
+          Chat WhatsApp
+        </a>
+      </nav>
+    </div>
 
-        <p class="sub">
-          Landing page, company profile, toko online sederhana, sampai website custom.
-          <b>Konsultasi gratis</b>, hasil modern, mobile-friendly, dan siap dipakai promosi.
-        </p>
+    <main class="flex-grow" id="home">
 
-        <div class="bullets">
-          <div class="bullet">
-            <strong>Proses cepat</strong>
-            <span>Landing 1–3 hari</span>
-          </div>
-          <div class="bullet">
-            <strong>Harga bersahabat</strong>
-            <span>Mulai 299 ribu</span>
-          </div>
-          <div class="bullet">
-            <strong>Siap promosi</strong>
-            <span>CTA + SEO basic</span>
+      <!-- Hero -->
+      <section class="px-4 py-12 md:px-40 md:py-20 bg-gradient-to-b from-white to-[#f0f4ff]">
+        <div class="layout-content-container flex flex-col max-w-[960px] mx-auto text-center">
+          <div class="flex flex-col gap-6 items-center">
+            <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-black rounded-full uppercase tracking-wider">
+              Jasa Buat Web Paling Murah se-Indramayu
+            </span>
+
+            <h1 class="text-[#0d121c] text-4xl md:text-6xl font-black leading-tight tracking-[-0.033em]">
+              Website Profesional <br />
+              <span class="text-primary">untuk UMKM & Bisnis Kamu</span>
+            </h1>
+
+            <p class="text-[#49659c] text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
+              Bikin website modern, cepat, dan mobile-friendly. Cocok untuk promosi, company profile, sampai toko online sederhana.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center w-full mt-2">
+              <a id="btnHeroWA"
+                 class="inline-flex items-center justify-center gap-2 rounded-lg h-12 px-8 bg-[#25D366] hover:bg-[#1ebc57] text-white text-base font-bold shadow-lg transition-transform hover:scale-[1.02]"
+                 href="#">
+                <span class="material-symbols-outlined">chat</span>
+                Chat via WhatsApp
+              </a>
+              <a class="inline-flex items-center justify-center rounded-lg h-12 px-8 bg-white border border-[#ced7e8] hover:bg-[#f7f9ff] text-[#0d121c] text-base font-bold shadow-sm transition-colors"
+                 href="#pricing">
+                Lihat Paket
+              </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-3xl mt-6">
+              <div class="rounded-xl border border-[#ced7e8] bg-white p-4 text-left shadow-sm">
+                <p class="font-black text-[#0d121c]">Cepat Jadi</p>
+                <p class="text-[#49659c] text-sm">Landing page bisa 1–3 hari.</p>
+              </div>
+              <div class="rounded-xl border border-[#ced7e8] bg-white p-4 text-left shadow-sm">
+                <p class="font-black text-[#0d121c]">Mobile Friendly</p>
+                <p class="text-[#49659c] text-sm">Tampil rapi di HP & laptop.</p>
+              </div>
+              <div class="rounded-xl border border-[#ced7e8] bg-white p-4 text-left shadow-sm">
+                <p class="font-black text-[#0d121c]">Harga Bersahabat</p>
+                <p class="text-[#49659c] text-sm">Transparan, no hidden fee.</p>
+              </div>
+            </div>
+
           </div>
         </div>
+      </section>
 
-        <div class="cta">
-          <a class="btn btn-primary" id="waHero" href="#">Minta Penawaran</a>
-          <a class="btn btn-ghost" href="#paket">Lihat Paket</a>
-        </div>
-
-        <div class="social" aria-label="social links">
-          <div class="icon">wa</div>
-          <div class="icon">ig</div>
-          <div class="icon">in</div>
-          <div class="icon">@</div>
-        </div>
-      </div>
-
-      <div class="cluster" aria-hidden="true">
-        <!-- Harga mulai -->
-        <div class="tile t1">
-          <div class="pad">
-            <p class="mini-title">Harga Mulai</p>
-            <p class="price">Rp 299K<small>/landing</small></p>
-            <div class="pill"><span class="dot"></span> Bonus konsultasi gratis</div>
-            <div class="pill"><span class="dot" style="background:linear-gradient(135deg,var(--accent1),var(--accent3))"></span> Mobile friendly</div>
+      <!-- Pricing Cards -->
+      <section class="px-4 py-10 md:px-40 bg-background-light" id="pricing">
+        <div class="layout-content-container flex flex-col max-w-[1200px] mx-auto">
+          <div class="mb-10 text-center">
+            <h2 class="text-3xl font-black text-[#0d121c] mb-2">Pilihan Paket Website</h2>
+            <p class="text-[#49659c]">Pilih paket yang sesuai kebutuhan. Bisa request custom juga.</p>
           </div>
-        </div>
 
-        <!-- Paket -->
-        <div class="tile t2 soft">
-          <div class="pad">
-            <p class="mini-title">Paket Populer</p>
-            <div class="rows">
-              <div class="row"><div class="chip"><span style="width:78%"></span></div>Starter <small>1 halaman</small></div>
-              <div class="row"><div class="chip" style="opacity:.55"><span style="width:62%"></span></div>Business <small>3–5 halaman</small></div>
-              <div class="row"><div class="chip" style="opacity:.35"><span style="width:46%"></span></div>Pro <small>custom</small></div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
+            <!-- Basic -->
+            <div class="flex flex-col gap-6 rounded-xl border border-solid border-[#ced7e8] bg-white p-8 hover:shadow-xl hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-1">
+              <div class="flex flex-col gap-2">
+                <h3 class="text-[#49659c] text-lg font-black uppercase tracking-wider">Basic</h3>
+                <p class="flex items-baseline gap-1 text-[#0d121c]">
+                  <span class="text-4xl font-black tracking-[-0.033em]">Rp 500rb</span>
+                </p>
+                <span class="text-[#49659c] text-sm font-medium">sekali bayar</span>
+              </div>
+
+              <hr class="border-[#e7ebf4]" />
+
+              <div class="flex flex-col gap-4 flex-grow">
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">Landing Page (Single Page)</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">Gratis Domain .com</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">Hosting Cepat NVMe</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">Revisi Desain 1x</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c] opacity-40">
+                  <span class="material-symbols-outlined text-gray-400 text-[20px]">cancel</span>
+                  <span class="text-sm font-medium">SEO Basic</span>
+                </div>
+              </div>
+
+              <button data-plan="Basic" data-price="Rp 500rb"
+                class="planBtn w-full mt-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-[#e7ebf4] hover:bg-[#dbe2f0] text-[#0d121c] text-sm font-black tracking-[0.015em] transition-colors">
+                Pilih Basic
+              </button>
+            </div>
+
+            <!-- Pro -->
+            <div class="relative flex flex-col gap-6 rounded-xl border-2 border-solid border-primary bg-white p-8 shadow-2xl z-10 scale-100 md:scale-105 transform">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-md">
+                Paling Laris
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <h3 class="text-primary text-lg font-black uppercase tracking-wider">Pro</h3>
+                <p class="flex items-baseline gap-1 text-[#0d121c]">
+                  <span class="text-5xl font-black tracking-[-0.033em]">Rp 1.5jt</span>
+                </p>
+                <span class="text-[#49659c] text-sm font-medium">sekali bayar</span>
+              </div>
+
+              <hr class="border-[#e7ebf4]" />
+
+              <div class="flex flex-col gap-4 flex-grow">
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-black">5 Halaman Website</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-black">Gratis Domain & SSL</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-black">SEO Basic Optimized</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-black">Email Bisnis Profesional</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-black">Mobile Friendly Design</span>
+                </div>
+              </div>
+
+              <button data-plan="Pro" data-price="Rp 1.5jt"
+                class="planBtn w-full mt-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary hover:bg-primary-hover text-white text-sm font-black tracking-[0.015em] transition-colors shadow-lg">
+                Pilih Pro
+              </button>
+            </div>
+
+            <!-- Business -->
+            <div class="flex flex-col gap-6 rounded-xl border border-solid border-[#ced7e8] bg-white p-8 hover:shadow-xl hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-1">
+              <div class="flex flex-col gap-2">
+                <h3 class="text-[#49659c] text-lg font-black uppercase tracking-wider">Business</h3>
+                <p class="flex items-baseline gap-1 text-[#0d121c]">
+                  <span class="text-4xl font-black tracking-[-0.033em]">Rp 3jt</span>
+                </p>
+                <span class="text-[#49659c] text-sm font-medium">sekali bayar</span>
+              </div>
+
+              <hr class="border-[#e7ebf4]" />
+
+              <div class="flex flex-col gap-4 flex-grow">
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">Custom Design Eksklusif</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">E-commerce / Toko Online</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">Integrasi Payment Gateway</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">Priority Support 24/7</span>
+                </div>
+                <div class="flex gap-3 items-start text-[#0d121c]">
+                  <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                  <span class="text-sm font-medium">Maintenance & Update 1 Tahun</span>
+                </div>
+              </div>
+
+              <button data-plan="Business" data-price="Rp 3jt"
+                class="planBtn w-full mt-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-[#e7ebf4] hover:bg-[#dbe2f0] text-[#0d121c] text-sm font-black tracking-[0.015em] transition-colors">
+                Pilih Business
+              </button>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- CTA -->
-        <div class="tile t3">
-          <div class="pad">
-            <p class="mini-title">Mulai Sekarang</p>
-            <div class="task">
-              <span>Konsultasi + Estimasi</span>
-              <span class="plus">+</span>
+      <!-- Features -->
+      <section class="px-4 py-12 md:px-40 bg-white" id="services">
+        <div class="layout-content-container flex flex-col max-w-[960px] mx-auto">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="flex flex-col md:flex-row gap-4 rounded-xl border border-[#ced7e8] bg-[#f8f9fc] p-6 items-center text-center md:text-left hover:border-primary/30 transition-colors">
+              <div class="flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary shrink-0">
+                <span class="material-symbols-outlined text-[28px]">verified_user</span>
+              </div>
+              <div>
+                <h3 class="text-[#0d121c] text-lg font-black mb-1">Garansi Kepuasan</h3>
+                <p class="text-[#49659c] text-sm">Revisi sesuai paket sampai website siap dipakai.</p>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Testimoni -->
-        <div class="tile t4 soft">
-          <div class="pad">
-            <p class="quote">“Webnya <b>rapi & cepat jadi</b>. Adminnya responsif, cocok buat UMKM.”</p>
-            <div class="avatar">
-              <div class="pic"></div>
-              <div class="name">
-                Klien UMKM
-                <small>Indramayu</small>
+            <div class="flex flex-col md:flex-row gap-4 rounded-xl border border-[#ced7e8] bg-[#f8f9fc] p-6 items-center text-center md:text-left hover:border-primary/30 transition-colors">
+              <div class="flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary shrink-0">
+                <span class="material-symbols-outlined text-[28px]">support_agent</span>
+              </div>
+              <div>
+                <h3 class="text-[#0d121c] text-lg font-black mb-1">Support Responsif</h3>
+                <p class="text-[#49659c] text-sm">Fast response untuk konsultasi & revisi.</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-4 rounded-xl border border-[#ced7e8] bg-[#f8f9fc] p-6 items-center text-center md:text-left hover:border-primary/30 transition-colors">
+              <div class="flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary shrink-0">
+                <span class="material-symbols-outlined text-[28px]">payments</span>
+              </div>
+              <div>
+                <h3 class="text-[#0d121c] text-lg font-black mb-1">Transparan</h3>
+                <p class="text-[#49659c] text-sm">Jelas fitur & biaya. Tidak ada biaya tersembunyi.</p>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Benefit -->
-        <div class="tile t5">
-          <div class="pad">
-            <p class="mini-title">Benefit</p>
-            <div class="bars">
-              <div class="bar"><span class="n">SEO</span><div class="track"><span></span></div></div>
-              <div class="bar"><span class="n">Speed</span><div class="track"><span></span></div></div>
-              <div class="bar"><span class="n">UI</span><div class="track"><span></span></div></div>
-            </div>
+      <!-- CTA / Contact -->
+      <section class="px-4 py-20 bg-primary/5" id="contact">
+        <div class="max-w-[800px] mx-auto text-center flex flex-col items-center gap-6">
+          <h2 class="text-[#0d121c] text-3xl font-black tracking-[-0.033em]">Siap Naikin Kualitas Bisnis Online?</h2>
+          <p class="text-[#49659c] text-lg max-w-xl">
+            Ceritain kebutuhanmu (jenis web, jumlah halaman, contoh referensi). Gratis konsultasi tanpa ikatan.
+          </p>
+
+          <a id="btnCtaWA"
+             class="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#25D366] hover:bg-[#1ebc57] text-white text-base font-black shadow-lg transition-transform hover:scale-105"
+             href="#">
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined">chat</span>
+              Chat via WhatsApp
+            </span>
+          </a>
+
+          <p class="text-[#49659c] text-sm">
+            Email: <a class="underline hover:text-primary" href="mailto:rifkibimantarasaputra@gmail.com">rifkibimantarasaputra@gmail.com</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-[#e7ebf4] mt-auto">
+      <div class="px-4 py-10 md:px-40">
+        <div class="layout-content-container flex flex-col max-w-[960px] mx-auto text-center">
+          <div class="flex flex-wrap items-center justify-center gap-6 mb-8">
+            <a class="text-[#49659c] text-sm font-medium hover:text-primary transition-colors min-w-40" href="#">Privacy Policy</a>
+            <a class="text-[#49659c] text-sm font-medium hover:text-primary transition-colors min-w-40" href="#">Terms of Service</a>
+            <a class="text-[#49659c] text-sm font-medium hover:text-primary transition-colors min-w-40" href="#">Sitemap</a>
           </div>
+
+          <div class="flex justify-center gap-6 mb-8">
+            <a id="igLink" class="text-[#49659c] hover:text-primary hover:scale-110 transition-all" href="#" aria-label="Instagram">
+              <svg aria-hidden="true" class="size-6" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.527c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
+              </svg>
+            </a>
+
+            <a id="fbLink" class="text-[#49659c] hover:text-primary hover:scale-110 transition-all" href="#" aria-label="Facebook">
+              <svg aria-hidden="true" class="size-6" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path>
+              </svg>
+            </a>
+
+            <a id="waFooterLink" class="text-[#49659c] hover:text-primary hover:scale-110 transition-all" href="#" aria-label="WhatsApp">
+              <svg aria-hidden="true" class="size-6" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0006 2.00003C6.47768 2.00003 2.00055 6.47716 2.00055 12.0001C2.00055 13.8247 2.4936 15.5264 3.35987 17.0028L2.01633 21.9142L7.08516 20.5843C8.51523 21.3653 10.1652 21.8087 11.9168 21.8087L12.0006 21.8088C17.5218 21.8088 22.0006 17.3301 22.0006 11.8088C22.0006 6.28753 17.5218 1.80884 12.0006 1.80884V2.00003Z"></path>
+              </svg>
+            </a>
+          </div>
+
+          <p class="text-[#49659c] text-sm font-normal">© <span id="year"></span> Rifdev Indramayu. All rights reserved.</p>
         </div>
       </div>
-    </section>
+    </footer>
 
-    <section class="sections" id="layanan">
-      <div class="sec">
-        <h3>Landing Page</h3>
-        <p>Untuk promosi produk/jasa, iklan, dan campaign. Fokus konversi + tombol WhatsApp.</p>
-      </div>
-      <div class="sec" id="paket">
-        <h3>Company Profile</h3>
-        <p>Profil bisnis profesional: layanan, galeri, lokasi, kontak. SEO basic biar gampang dicari.</p>
-      </div>
-      <div class="sec" id="testi">
-        <h3>Custom Website</h3>
-        <p>Katalog, booking, form order, dashboard sederhana. Bisa diskusi dulu biar jelas kebutuhannya.</p>
-      </div>
-    </section>
-
-    <section class="sections" id="kontak" style="margin-top:12px">
-      <div class="sec" style="grid-column: 1 / -1;">
-        <h3>Kontak</h3>
-        <p>
-          Klik WhatsApp untuk konsultasi. Ceritakan: jenis web, fitur, dan contoh referensi.
-          <br><b>Chat:</b> <a id="waText" href="#" style="color:rgba(29,31,42,.9); text-decoration:underline;">WhatsApp Rifdev</a>
-          • <b>Email:</b> <a id="emailText" href="#" style="color:rgba(29,31,42,.9); text-decoration:underline;">rifkibimantarasaputra@gmail.com</a>
-        </p>
-      </div>
-    </section>
   </div>
 
   <script>
-    // === GANTI KONTAK DI SINI ===
+    // =============================
+    // UBAH KONTAK DI SINI
+    // =============================
     const WA_NUMBER = "62812XXXXXXXX"; // format internasional tanpa "+"
-    const EMAIL = "rifkibimantarasaputra@gmail.com";
+    const IG_URL = "#";               // contoh: "https://instagram.com/username"
+    const FB_URL = "#";               // contoh: "https://facebook.com/username"
 
-    function waLink(text){
+    function waLink(text) {
       return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
     }
 
-    const msg = "Halo Rifdev, saya mau bikin website. Bisa minta paket & estimasi harga?";
+    // default message
+    const baseMsg =
+      "Halo Rifdev, saya mau bikin website. Bisa minta info paket & estimasi harga?\n\n" +
+      "Jenis web: (Landing/Company Profile/Toko Online)\n" +
+      "Jumlah halaman: \n" +
+      "Referensi: \n";
 
-    const waTop = document.getElementById("waTop");
-    const waTop2 = document.getElementById("waTop2");
-    const waHero = document.getElementById("waHero");
-    const waText = document.getElementById("waText");
-    [waTop, waTop2, waHero, waText].forEach(el => { if(el) el.href = waLink(msg); });
-
-    const emailText = document.getElementById("emailText");
-    if(emailText) emailText.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Konsultasi Website — Rifdev");
-
-    // Mobile menu
-    const btn = document.getElementById('menuBtn');
-    const nav = document.getElementById('mnav');
-    let open = false;
-
-    btn?.addEventListener('click', () => {
-      open = !open;
-      nav.style.display = open ? 'block' : 'none';
-      nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    // set WA links
+    const waIds = ["btnHeaderWA", "btnMobileWA", "btnHeroWA", "btnCtaWA", "waFooterLink"];
+    waIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = waLink(baseMsg);
     });
 
-    nav?.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') {
-        open = false;
-        nav.style.display = 'none';
-        nav.setAttribute('aria-hidden', 'true');
-      }
+    // set socials
+    const ig = document.getElementById("igLink");
+    const fb = document.getElementById("fbLink");
+    if (ig) ig.href = IG_URL;
+    if (fb) fb.href = FB_URL;
+
+    // plan buttons => message by plan
+    document.querySelectorAll(".planBtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const plan = btn.getAttribute("data-plan");
+        const price = btn.getAttribute("data-price");
+        const msg =
+          `Halo Rifdev, saya mau ambil paket *${plan}* (${price}).\n` +
+          `Boleh dibantu prosesnya?\n\n` +
+          `Nama: \n` +
+          `Jenis bisnis: \n` +
+          `Kebutuhan: \n` +
+          `Deadline: \n`;
+        window.open(waLink(msg), "_blank");
+      });
     });
+
+    // mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    mobileMenuBtn?.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // close mobile menu on link click
+    mobileMenu?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+    });
+
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
